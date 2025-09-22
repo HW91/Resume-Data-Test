@@ -126,8 +126,10 @@
                 // Save last used time
                 lastUsed = new Date().toLocaleString();
 
-                // Detect cache vs API (assuming backend sends `data.cached = true/false`)
-                const source = data.cached ? "Cache" : "API";
+                // Use backend-provided source if available
+                const source = data.source 
+                    ? data.source 
+                    : (data.cached ? "Cache" : "API");
 
                 // Display status
                 statusDiv.className = 'status success';
